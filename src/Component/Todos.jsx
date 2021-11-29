@@ -1,21 +1,15 @@
 import React, { useState } from 'react';
-import { connect } from "react-redux";
-import { addTodos } from '../Reducer/todo';
+import { useDispatch, useSelector } from "react-redux";
+import { addTodo, removeTodo, toggleTodo, updateTodo } from '../Action/todo';
+import { filterColor, filterStatus } from '../Action/filter';
 
-const mapStateToProps = (state) => {
-  return {
-    todos: state,
-  };
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addTodo: (obj) => dispatch(addTodos(obj)),
-  };
-};
 
 const Todos = (props) => {
   const [todo, setTodo] = useState("");
+
+  const dispatch = useDispatch();
+  const state = useSelector(state => state);
 
   
 
@@ -56,4 +50,4 @@ const Todos = (props) => {
   )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Todos);
+export default Todos;

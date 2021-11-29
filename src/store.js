@@ -1,8 +1,10 @@
 import { createStore, combineReducers } from 'redux';
-import { reducer } from './Reducer/todo';
+import { todoReducer } from './Reducer/todo';
+import { filterReducer } from './Reducer/filter';
 
 const rootReducer = combineReducers({
-  reducer: reducer,
+  todo: todoReducer,
+  filter: filterReducer
 });
 
 const store = createStore(rootReducer);
