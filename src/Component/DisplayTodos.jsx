@@ -1,31 +1,14 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
-import {
-  addTodos,
-  completedTodos,
-  removeTodos,
-  updateTodos,
-} from "../Reducer/todo";
+import { useSelector, useDispatch } from "react-redux";
 import TodoItem from "./TodoItem";
 
 
-const mapStateToProps = (state) => {
-  return {
-    todos: state,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addTodo: (obj) => dispatch(addTodos(obj)),
-    removeTodo: (id) => dispatch(removeTodos(id)),
-    updateTodo: (obj) => dispatch(updateTodos(obj)),
-    completedTodo: (id) => dispatch(completedTodos(id)),
-  };
-};
 
 const DisplayTodos = (props) => {
   const [sort, setSort] = useState("active");
+  const state = useSelector(state => state.state);
+  const dispatch = useDispatch();
+
   return (
     <div className="displaytodos">
       <div className="buttons">
@@ -105,4 +88,4 @@ const DisplayTodos = (props) => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DisplayTodos);
+export default DisplayTodos;

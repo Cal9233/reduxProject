@@ -1,53 +1,76 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { addTodo, removeTodo, toggleTodo, updateTodo } from '../Action/todo';
-import { filterColor, filterStatus } from '../Action/filter';
+import React, {useState} from 'react';
+import { addTodo } from '../Action/todo';
+import { useSelector, useDispatch } from 'react-redux';
 
 
 
-const Todos = (props) => {
-  const [todo, setTodo] = useState("");
-
-  const dispatch = useDispatch();
-  const state = useSelector(state => state);
-
+const Todos = () => {
   
+  const [todo, setTodo] = useState({});
+  //const [user, setUser] = useState({});
+  // const [todoList, setTodoList] = React.useState();
 
-  const handleChange = (e) => {
-    setTodo(e.target.value);
-  }
+  const todoList = useSelector((state) => state.todoReducer);
+  //const userList = useSelector((state) => state.userReducer);
+  const dispatch = useDispatch();
 
-  const add = () => {
-    if (todo === ""){
-      alert("Input is Empty");
-    } else {
-      props.addTodo({
-        id: Math.floor(Math.random() * 1000),
-        item: todo,
-        completed: false,
-      });
-      setTodo("");
-    }
+  // console.log(state);
+
+  // const handleUserNameChange = (e) => {
+  //   setUser({
+  //     userName: e.target.value,
+  //     description: e.target.value,
+  //     status: "not-started",
+  //   });
+  // };
+
+  const handleOnChaneg = (e) => {
+    setTodo({
+      id: "03" + e.target.value,
+      description: e.target.value,
+      status: "not-started",
+    });
   };
 
-  return (
-    <div className="addTodos">
-      <input 
-      type = "text"
-      onChange={(e) => handleChange(e)}
-      className="todo-input"
-      value={todo}/>
-      <button className="add-button" onChange={() => add()}>Add</button>
-      <br />
+  const onAdd = () => {
+    dispatch(addTodo(todo));
+  };
 
-      {/* <ul>
-        {props.todos.length > 0 && 
-          props.todos.map((item) => {
-            return <li key={item.id}>{item.item}</li>;
-          })}
-      </ul> */}
+  // const onUserAdd = () => {
+  //   dispatch(addUser(user));
+  // };
+
+  // const handleGetTodo = () => {
+  //   dispatch(getTodoList());
+  // };
+
+  return (
+    <div className="App">
+      <br />
+      <input type="" onChange={handleOnChaneg} />
+      {todoList.map((val, key) => {
+        return <p key={key}> {val.text}</p>;
+      })}
+
+      <button onClick={onAdd}> Add to List</button>
+      {/* <br />
+      <br />
+      <br />
+      <input type="" onChange={handleUserNameChange} />
+      {userList.map((val, key) => {
+        return <p key={key}> {val.userName}</p>;
+      })}
+
+      <button onClick={onUserAdd}> Add user to the List</button>
+
+      <br />
+      <br />
+      <br />
+      <br />
+      <button onClick={handleGetTodo}> Get Todo List</button> */}
     </div>
-  )
+  );
 }
 
-export default Todos;
+
+export default Todos

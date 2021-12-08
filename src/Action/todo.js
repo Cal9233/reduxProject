@@ -3,14 +3,21 @@ import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO, UPDATE_TODO } from "./action-types"
 //action is the logic for the reducer to dispatch
 //think of action as the "controller" in mvc concepts
 
-export const addTodo = (todo) => {
-  return async dispatch => {
-    dispatch({
-      type: ADD_TODO,
-      payload: todo,
-    })
-  }
-};
+// export const addTodo = (todo) => {
+//   return async dispatch => {
+//     dispatch({
+//       type: ADD_TODO,
+//       payload: todo,
+//     })
+//   }
+// };
+
+export function addTodo(todo) {
+  return {
+    type: ADD_TODO,
+    payload: todo,
+  };
+}
 
 export const removeTodo = (key) => {
   return async dispatch => {

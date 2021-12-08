@@ -1,12 +1,9 @@
-import { createStore, combineReducers } from 'redux';
-import { todoReducer } from './Reducer/todo';
-import { filterReducer } from './Reducer/filter';
+import { createStore } from 'redux';
+import rootReducer from './Reducer/rootReducer';
+import { applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
-const rootReducer = combineReducers({
-  todo: todoReducer,
-  filter: filterReducer
-});
 
-const store = createStore(rootReducer);
-
+const store = createStore(rootReducer, applyMiddleware(thunk));
+//console.log(store);
 export default store;
