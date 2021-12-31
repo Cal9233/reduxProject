@@ -11,56 +11,80 @@ function getId(todos){
   }, -1) + 1;
 }
 
-const initialState = {
-  todo: [
-    { id: 0, text: "Learn React", completed: true, color: "green" },
-    { id: 1, text: "Learn Redux", completed: false, color: "red" },
-    { id: 2, text: "Build Redux App", completed: false, color: "blue"},
-    { id: 3, text: "Remain Positive", completed: true, colors: "purple" },
-    { id: 4, text: "Love Yourself", completed: false , colors: "orange"}
-  ]
-};
+const initialState = [
+  {
+    id: "01",
+    text: "Learn React",
+    status: "not-started",
+  },
+  {
+    id: "02",
+    text: "Learn Redux",
+    status: "not-started",
+  },
+  {
+    id: "03",
+    text: "Build Redux App",
+    status: "not-started",
+  },
+  {
+    id: "04",
+    text: "Remain Positive",
+    status: "Complete",
+  }
+];
 
-const todoReducer = (state = initialState, action) => {
-  switch(action.types){
-    case ADD_TODO: {
-      return [
-        ...state,
-        {
-          id: getId(state),
-          text: action.payload,
-          completed: false
-        }
-      ] 
-    }
-    case REMOVE_TODO: {
-      return {
-        state,
-        todo: action.payload
-      }
-    }
-    case UPDATE_TODO: {
-      return {
-        ...state,
-        todo: action.payload
-      }
-    }
-    case TOGGLE_TODO: {
-      return state.map(todo => {
-        if(todo.id !== action.payload){
-          return todo
-        }
-        return {
-          ...todo,
-          completed: !todo.completed
-        }
-      })
-    }
-    default: {
+function todoReducer(state = initialState, action) {
+  switch (action.type) {
+    case ADD_TODO:
+      return [...state, action.payload];
+
+    default:
       return state;
-    }
   }
 }
+
+// const todoReducer = (state = initialState, action) => {
+//   switch(action.types){
+//     case ADD_TODO: 
+//       return [
+//         ...state,
+//         // {
+//         //   id: getId(state),
+//         //   text: action.payload,
+//         //   completed: false
+//         // }
+//         action.payload
+//       ] 
+    
+//     case REMOVE_TODO: {
+//       return {
+//         state,
+//         todo: action.payload
+//       }
+//     }
+//     case UPDATE_TODO: {
+//       return {
+//         ...state,
+//         todo: action.payload
+//       }
+//     }
+//     case TOGGLE_TODO: {
+//       return state.map(todo => {
+//         if(todo.id !== action.payload){
+//           return todo
+//         }
+//         return {
+//           ...todo,
+//           completed: !todo.completed
+//         }
+//       })
+//     }
+//     default: {
+//       return state;
+//     }
+//   }
+// }
 
 // export const todos = (state = initialState, action) => {
 //   switch(action.types){
