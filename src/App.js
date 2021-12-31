@@ -1,13 +1,13 @@
 import './App.css';
 import Todos from './Component/Todos';
-//import DisplayTodos from './Component/DisplayTodos';
 
 function App() {
   return (
-    <>
-      <Todos />
-      {/* <DisplayTodos /> */}
-    </>
+    <div className='App'>
+      <div className='App-header'>
+        <Todos />
+      </div>
+    </div>
   );
 }
 

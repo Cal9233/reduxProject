@@ -5,6 +5,12 @@ import { ADD_TODO, REMOVE_TODO, UPDATE_TODO, TOGGLE_TODO } from "../Action/actio
 //types of field action is to switch and validate WHICH logic to perform
 //payload data updates the states in the store
 
+function getId(todos){
+  return todos.reduce((i, todo) => {
+    return Math.max(todo.id, i)
+  }, -1) + 1;
+}
+
 const initialState = [
   {
     id: "01",
@@ -16,6 +22,16 @@ const initialState = [
     text: "Learn Redux",
     status: "not-started",
   },
+  {
+    id: "03",
+    text: "Build Redux App",
+    status: "not-started",
+  },
+  {
+    id: "04",
+    text: "Remain Positive",
+    status: "Complete",
+  }
 ];
 
 function todoReducer(state = initialState, action) {
@@ -27,19 +43,6 @@ function todoReducer(state = initialState, action) {
       return state;
   }
 }
-
-// function getId(todos){
-//   return todos.reduce((i, todo) => {
-//     return Math.max(todo.id, i)
-//   }, -1) + 1;
-// }
-
-// const initialState = [ 
-//     { id: 0, text: "Learn React", completed: true, color: "green" },
-//     { id: 1, text: "Learn Redux", completed: false, color: "red" },
-//     { id: 2, text: "Build Redux App", completed: false, color: "blue"},
-//     { id: 3, text: "Remain Positive", completed: true, colors: "purple" }
-// ];
 
 // const todoReducer = (state = initialState, action) => {
 //   switch(action.types){
